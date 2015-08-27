@@ -7,6 +7,9 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
+import java.util.Arrays;
+import java.util.List;
+
 /**
  * Created by kopelevi on 27/08/2015.
  */
@@ -42,5 +45,11 @@ public class SimpleStringCalculatorTest {
         expectedException.expect(RuntimeException.class);
         expectedException.expectMessage("Not a valid number");
         Assert.assertEquals(cal.isPrime("x"), false);
+    }
+
+    @Test
+    public void whenGiveListOfNumbersThenReturnTheSumOfEven() {
+        List<Integer> nums = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
+        Assert.assertEquals(cal.sumEven(nums), 30);
     }
 }
