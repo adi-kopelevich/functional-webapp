@@ -1,7 +1,6 @@
 package sample.functional.programing.calculator;
 
 import java.util.List;
-import java.util.function.Predicate;
 import java.util.stream.IntStream;
 
 /**
@@ -9,43 +8,22 @@ import java.util.stream.IntStream;
  */
 public class SimpleStringCalculator {
 
-//    public boolean isPrime(String number) {
-//        boolean isPrime = true;
-//        int num;
-//        try {
-//             num = Integer.valueOf(number);
-//        }catch(NumberFormatException e){
-//            throw new RuntimeException("Not a valid number: "+ number, e);
-//        }
-//        for (int i = 2; i < num; i++) {
-//            if (num % i == 0) {
-//                isPrime = false;
-//                break;
-//            }
-//        }
-//        return isPrime;
-//    }
-
-
     public boolean isDivisible(int num, int divisor) {
         return num % divisor == 0;
+    }
+
+    public int sumEven(List<Integer> numbers) {
+        return numbers.stream().filter(i -> i % 2 == 0).reduce(0, Math::addExact);
     }
 
     public boolean isPrime(String number) {
         int num;
         try {
             num = Integer.valueOf(number);
-        } catch (NumberFormatException e) {
-            throw new RuntimeException("Not a valid number: " + number, e);
+        } catch (NumberFormatException nfe) {
+            throw new RuntimeException("Not a valid number...");
         }
-        Predicate<Integer> isGreateThan3 = i -> i > 3;
-        Predicate<Integer> isDivisible = i -> num % i == 0;
-        return num > 1 && IntStream.range(2, num).
-                noneMatch(i -> isDivisible(num, i));
-    }
-    
-    public int sumEven(List<Integer> numbers){
-        return numbers.stream().filter(i -> i%2==0).reduce(0, Math::addExact);
+        return num > 1 && IntStream.range(2, num).noneMatch(i -> num % i == 0);
     }
 
 }
