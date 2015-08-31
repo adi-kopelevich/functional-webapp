@@ -26,4 +26,25 @@ public class SimpleStringCalculator {
         return num > 1 && IntStream.range(2, num).noneMatch(i -> num % i == 0);
     }
 
+    private static boolean isGreaterThan3(int num){
+        return num > 3;
+    }
+
+    private static boolean isEven(int num){
+        return num % 2 == 0;
+    }
+
+    private static int doubleNum(int num){
+        return num * 2 ;
+    }
+
+    public int getDoubleOfFirstNumberGreaterThan3(List<Integer> numbers) {
+        return numbers.stream().
+                filter(SimpleStringCalculator::isGreaterThan3).
+                filter(SimpleStringCalculator::isEven).
+                map(SimpleStringCalculator::doubleNum).
+                findFirst().
+                get();
+    }
+
 }

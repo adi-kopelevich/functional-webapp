@@ -76,4 +76,11 @@ public class SimpleStringCalculatorTest {
         expectedException.expectMessage("Not a valid number");
         stringCalculator.isPrime("x");
     }
+
+    // get the double value of the fisrt number bigger than 3
+    @Test
+    public final void whenGivenListOfNumbersThenReturnTheDoubleOfFirstBiggerThan3(){
+        List<Integer> nums = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
+        Assert.assertEquals(stringCalculator.getDoubleOfFirstNumberGreaterThan3(nums), 8);
+    }
 }
