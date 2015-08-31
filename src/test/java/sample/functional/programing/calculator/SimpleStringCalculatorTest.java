@@ -79,8 +79,30 @@ public class SimpleStringCalculatorTest {
 
     // get the double value of the fisrt number bigger than 3
     @Test
-    public final void whenGivenListOfNumbersThenReturnTheDoubleOfFirstBiggerThan3(){
+    public final void whenGivenListOfNumbersThenReturnTheDoubleOfFirstBiggerThan3() {
         List<Integer> nums = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
         Assert.assertEquals(stringCalculator.getDoubleOfFirstNumberGreaterThan3(nums), 8);
+    }
+
+
+    // get the total values of  given numbers
+    @Test
+    public final void whenGivenListOfNumbersThenReturnTheTotalValue() {
+        List<Integer> nums = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
+        Assert.assertEquals(stringCalculator.getTotalValues(nums), 55);
+    }
+
+    // get the total values of given even numbers
+    @Test
+    public final void whenGivenListOfNumbersThenReturnTheTotalValueOfTheEven() {
+        List<Integer> nums = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
+        Assert.assertEquals(stringCalculator.getTotalEvenNumbers(nums), 30);
+    }
+
+    // get the total sum of the ducle values of given numbers
+    @Test
+    public final void whenGivenListOfNumbersThenReturnTheTotalSumOfThierDouble(){
+        List<Integer> nums = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
+        Assert.assertEquals(stringCalculator.getSumOfDoubles(nums), 110);
     }
 }
