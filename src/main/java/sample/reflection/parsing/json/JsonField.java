@@ -9,17 +9,24 @@ public class JsonField {
 
 
     private String key;
-    private String val;
+    private Object val;
 
-    public JsonField(String key, String val) {
+    public JsonField(String key, Object val) {
         this.key = key;
         this.val = val;
     }
 
     @Override
     public String toString() {
+        StringBuffer newVal = new StringBuffer("");
+        if (val instanceof String) {
+            newVal.append(JsonTokens.JSON_STRING_TOKEN).append(val).append(JsonTokens.JSON_STRING_TOKEN);
+        } else {
+            newVal.append(val);
+        }
         return new StringBuffer().append(JsonTokens.JSON_STRING_TOKEN).append(key).append(JsonTokens.JSON_STRING_TOKEN)
                 .append(JsonTokens.JSON_FIELD_KEY_VAL_SEPERATOR)
-                .append(JsonTokens.JSON_STRING_TOKEN).append(val).append(JsonTokens.JSON_STRING_TOKEN).toString();
+                .append(newVal).toString();
+
     }
 }

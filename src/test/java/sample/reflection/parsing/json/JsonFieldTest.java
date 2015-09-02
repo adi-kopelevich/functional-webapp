@@ -29,12 +29,22 @@ public class JsonFieldTest {
 
     }
 
+    //"fieldKeyId":"fieldKeyValue"
     @Test
     public void whenGivenFiledKeyAndValuenReturnJsonFieldRepresentation() {
-
         String fieldKeyId = "fieldKeyId";
         String fieldKeyValue = "fieldKeyValue";
         String targetJson = "\"" + fieldKeyId + "\":\"" + fieldKeyValue + "\"";
+        JsonField jsonField = new JsonField(fieldKeyId, fieldKeyValue);
+        Assert.assertEquals(jsonField.toString(), targetJson);
+    }
+
+    //"fieldKeyId":777
+    @Test
+    public void whenGivenIntValuenReturnJsonFieldIntRepresentation() {
+        String fieldKeyId = "fieldKeyId";
+        int fieldKeyValue = 777;
+        String targetJson = "\"" + fieldKeyId + "\":" + fieldKeyValue;
         JsonField jsonField = new JsonField(fieldKeyId, fieldKeyValue);
         Assert.assertEquals(jsonField.toString(), targetJson);
     }
