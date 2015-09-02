@@ -1,11 +1,21 @@
 package sample.reflection.parsing.json.pojo;
 
+import sample.reflection.parsing.json.annotaions.JsonFieldAnnotation;
+import sample.reflection.parsing.json.annotaions.JsonRootAnnotation;
+
 /**
  * Created by kopelevi on 02/09/2015.
  */
+@JsonRootAnnotation
 public class PersonPojo {
+
+    @JsonFieldAnnotation
     public String id;
+
+    @JsonFieldAnnotation
     public String name;
+
+    @JsonFieldAnnotation
     public String addresses;
 
     public PersonPojo() {
