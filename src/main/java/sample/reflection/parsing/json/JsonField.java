@@ -1,5 +1,7 @@
 package sample.reflection.parsing.json;
 
+import sample.reflection.parsing.json.constants.JsonTokens;
+
 /**
  * Created by kopelevi on 02/09/2015.
  */

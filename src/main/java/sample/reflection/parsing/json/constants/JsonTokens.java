@@ -1,4 +1,4 @@
-package sample.reflection.parsing.json;
+package sample.reflection.parsing.json.constants;
 
 /**
  * Created by kopelevi on 02/09/2015.
