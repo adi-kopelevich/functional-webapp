@@ -7,10 +7,10 @@ import sample.reflection.parsing.json.annotaions.JsonRootAnnotation;
  * Created by kopelevi on 02/09/2015.
  */
 @JsonRootAnnotation
-public class PersonPojo {
+public class Person {
 
     @JsonFieldAnnotation
-    public int id;
+    public String id;
 
     @JsonFieldAnnotation
     public String name;
@@ -18,10 +18,10 @@ public class PersonPojo {
     @JsonFieldAnnotation
     public String addresses;
 
-    public PersonPojo() {
+    public Person() {
     }
 
-    public PersonPojo(int id, String name, String addresses) {
+    public Person(String id, String name, String addresses) {
         this.id = id;
         this.name = name;
         this.addresses = addresses;
@@ -43,11 +43,11 @@ public class PersonPojo {
         this.name = name;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
