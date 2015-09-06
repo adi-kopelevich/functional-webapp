@@ -19,9 +19,23 @@ public class JsonField {
     @Override
     public String toString() {
         StringBuffer newVal = new StringBuffer("");
-        if (val instanceof String) {
+        if (val instanceof JsonField) {
+            newVal.append(JsonTokens.JSON_START_BARACKET).append(val.toString()).append(JsonTokens.JSON_END_BARCKET);
+        } else if (val instanceof String) {
             newVal.append(JsonTokens.JSON_STRING_TOKEN).append(val).append(JsonTokens.JSON_STRING_TOKEN);
-        } else {
+        } else if (val instanceof Object[]) { //array
+            newVal.append(JsonTokens.JSON_START_ARRAY_TOKEN);
+            for (Object o : (Object[]) val) {
+                if (o instanceof String) {
+                    newVal.append(JsonTokens.JSON_STRING_TOKEN).append(o.toString()).append(JsonTokens.JSON_STRING_TOKEN);
+                } else {
+                    newVal.append(o.toString());
+                }
+                newVal.append(JsonTokens.JSON_FIELD_SEPERATOR);
+            }
+            int startInd = newVal.lastIndexOf(JsonTokens.JSON_FIELD_SEPERATOR);
+            newVal.replace(startInd, startInd + 1, JsonTokens.JSON_END_ARRAY_TOKEN);
+        } else { //int value
             newVal.append(val);
         }
         return new StringBuffer().append(JsonTokens.JSON_STRING_TOKEN).append(key).append(JsonTokens.JSON_STRING_TOKEN)

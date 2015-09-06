@@ -16,22 +16,22 @@ public class Person {
     public String name;
 
     @JsonFieldAnnotation
-    public String addresses;
+    public Object[] addresses;
 
     public Person() {
     }
 
-    public Person(int id, String name, String addresses) {
+    public Person(int id, String name, Object[] addresses) {
         this.id = id;
         this.name = name;
         this.addresses = addresses;
     }
 
-    public String getAddresses() {
+    public Object[] getAddresses() {
         return addresses;
     }
 
-    public void setAddresses(String addresses) {
+    public void setAddresses(Object[] addresses) {
         this.addresses = addresses;
     }
 

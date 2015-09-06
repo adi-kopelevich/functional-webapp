@@ -49,4 +49,25 @@ public class JsonFieldTest {
         Assert.assertEquals(jsonField.toString(), targetJson);
     }
 
+    //"fieldKeyId":[1, 2, "3", 4, "5"]
+    @Test
+    public void whenGivenArrayReturnJsonArrayRepresentation() {
+        String fieldKeyId = "fieldKeyId";
+        Object[] fieldKeyValue = {1, 2, "3", 4, "5"};
+        String targetJson = "\"" + fieldKeyId + "\":" + "[1,2,\"3\",4,\"5\"]";
+        JsonField jsonField = new JsonField(fieldKeyId, fieldKeyValue);
+        Assert.assertEquals(targetJson, jsonField.toString());
+    }
+
+    //"fieldKeyId":{"key1":"val1"}
+    @Test
+    public void whenGivenFiledOfFieldsReturnJsonJsonHirarchyRepresentation() {
+        String fieldKey = "fieldKey";
+        String innerfieldKey = "innerFieldKey";
+        String innerfieldValue = "innerfieldValue";
+        String targetJson = "\"" + fieldKey + "\":{" + "\"" + innerfieldKey + "\":\"" + innerfieldValue + "\"" + "}";
+        JsonField jsonField = new JsonField(fieldKey, new JsonField(innerfieldKey, innerfieldValue));
+        Assert.assertEquals(targetJson, jsonField.toString());
+    }
+
 }

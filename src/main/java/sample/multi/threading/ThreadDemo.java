@@ -20,7 +20,7 @@ public class ThreadDemo extends Thread {
         thread2.start();
 
         System.out.println("Starting thread3...");
-        Thread thread3 = new GuessANumber(27);
+        Thread thread3 = new GuessANumber(7);
         thread3.start();
         try {
             thread3.join();
@@ -28,7 +28,7 @@ public class ThreadDemo extends Thread {
             System.out.println("Thread interrupted.");
         }
         System.out.println("Starting thread4...");
-        Thread thread4 = new GuessANumber(75);
+        Thread thread4 = new GuessANumber(40);
 
         thread4.start();
         System.out.println("main() is ending...");
