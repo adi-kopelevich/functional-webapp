@@ -14,5 +14,6 @@ public class SingleObjectTest {
         SingleObject obj1 = SingleObject.getInstance();
         SingleObject obj2 = SingleObject.getInstance();
         Assert.assertEquals(obj1, obj2);
+        Assert.assertTrue(obj1 == obj2);
     }
 }
