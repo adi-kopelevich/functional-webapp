@@ -42,22 +42,24 @@ public class SimpleStringCalculator {
         return num > 3;
     }
 
-    private static boolean isEven(int num) {
-        return num % 2 == 0;
-    }
+//    private static boolean isEven(int num) {
+//        return num % 2 == 0;
+//    }
 
     private static int doubleNum(int num) {
         return num * 2;
     }
 
-    public int getDoubleOfFirstNumberGreaterThan3(List<Integer> numbers) {
+    public int getDoubleOfFirstEvenNumberGreaterThan3(List<Integer> numbers) {
         Predicate<Integer> isGreaterThan3 = i -> i > 3;
+        Predicate<Integer> isEven = n -> n % 2 == 0;
+
 
         Function<Integer, Predicate<Integer>> isGreaterThan = x -> i -> i > x;
 
         return numbers.stream().
                 filter(isGreaterThan.apply(3)).
-                filter(SimpleStringCalculator::isEven).
+                filter(isEven).
                 map(SimpleStringCalculator::doubleNum).
                 findFirst().
                 get();

@@ -35,16 +35,6 @@ public class SimpleStringCalculatorTest {
     }
 
     @Test
-    public void whenGivenPrimeNumThenReturnTrue() {
-        Assert.assertEquals(stringCalculator.isPrime("7"), true);
-    }
-
-    @Test
-    public void whenGivenNonPrimeNumThenReturnFalse() {
-        Assert.assertEquals(stringCalculator.isPrime("8"), false);
-    }
-
-    @Test
     public void whenGivenNonNumThenThrowException() {
         expectedException.expect(RuntimeException.class);
         expectedException.expectMessage("Not a valid number");
@@ -77,11 +67,11 @@ public class SimpleStringCalculatorTest {
         stringCalculator.isPrime("x");
     }
 
-    // get the double value of the fisrt number bigger than 3
+    // get the double value of the first even number bigger than 3
     @Test
-    public final void whenGivenListOfNumbersThenReturnTheDoubleOfFirstBiggerThan3() {
+    public final void whenGivenListOfNumbersThenReturnTheDoubleOfFirstEvenBiggerThan3() {
         List<Integer> nums = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
-        Assert.assertEquals(stringCalculator.getDoubleOfFirstNumberGreaterThan3(nums), 8);
+        Assert.assertEquals(stringCalculator.getDoubleOfFirstEvenNumberGreaterThan3(nums), 8);
     }
 
 
