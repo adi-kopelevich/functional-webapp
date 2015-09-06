@@ -10,9 +10,9 @@ import org.junit.rules.ExpectedException;
 /**
  * Created by kopelevi on 02/09/2015.
  */
-public class JsonFieldTest {
+public class JsonTreeNodeTest {
 
-    public JsonFieldTest() {
+    public JsonTreeNodeTest() {
 
     }
 
@@ -35,8 +35,8 @@ public class JsonFieldTest {
         String fieldKeyId = "fieldKeyId";
         String fieldKeyValue = "fieldKeyValue";
         String targetJson = "\"" + fieldKeyId + "\":\"" + fieldKeyValue + "\"";
-        JsonField jsonField = new JsonField(fieldKeyId, fieldKeyValue);
-        Assert.assertEquals(jsonField.toString(), targetJson);
+        JsonTreeNode jsonTreeNode = new JsonTreeNode(fieldKeyId, fieldKeyValue);
+        Assert.assertEquals(jsonTreeNode.toString(), targetJson);
     }
 
     //"fieldKeyId":777
@@ -45,8 +45,8 @@ public class JsonFieldTest {
         String fieldKeyId = "fieldKeyId";
         int fieldKeyValue = 777;
         String targetJson = "\"" + fieldKeyId + "\":" + fieldKeyValue;
-        JsonField jsonField = new JsonField(fieldKeyId, fieldKeyValue);
-        Assert.assertEquals(jsonField.toString(), targetJson);
+        JsonTreeNode jsonTreeNode = new JsonTreeNode(fieldKeyId, fieldKeyValue);
+        Assert.assertEquals(jsonTreeNode.toString(), targetJson);
     }
 
     //"fieldKeyId":[1, 2, "3", 4, "5"]
@@ -55,8 +55,8 @@ public class JsonFieldTest {
         String fieldKeyId = "fieldKeyId";
         Object[] fieldKeyValue = {1, 2, "3", 4, "5"};
         String targetJson = "\"" + fieldKeyId + "\":" + "[1,2,\"3\",4,\"5\"]";
-        JsonField jsonField = new JsonField(fieldKeyId, fieldKeyValue);
-        Assert.assertEquals(targetJson, jsonField.toString());
+        JsonTreeNode jsonTreeNode = new JsonTreeNode(fieldKeyId, fieldKeyValue);
+        Assert.assertEquals(targetJson, jsonTreeNode.toString());
     }
 
     //"fieldKeyId":{"key1":"val1"}
@@ -66,8 +66,8 @@ public class JsonFieldTest {
         String innerfieldKey = "innerFieldKey";
         String innerfieldValue = "innerfieldValue";
         String targetJson = "\"" + fieldKey + "\":{" + "\"" + innerfieldKey + "\":\"" + innerfieldValue + "\"" + "}";
-        JsonField jsonField = new JsonField(fieldKey, new JsonField(innerfieldKey, innerfieldValue));
-        Assert.assertEquals(targetJson, jsonField.toString());
+        JsonTreeNode jsonTreeNode = new JsonTreeNode(fieldKey, new JsonTreeNode(innerfieldKey, innerfieldValue));
+        Assert.assertEquals(targetJson, jsonTreeNode.toString());
     }
 
 }

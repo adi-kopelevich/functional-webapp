@@ -5,13 +5,13 @@ import sample.reflection.parsing.json.constants.JsonTokens;
 /**
  * Created by kopelevi on 02/09/2015.
  */
-public class JsonField {
+public class JsonTreeNode {
 
 
     private String key;
     private Object val;
 
-    public JsonField(String key, Object val) {
+    public JsonTreeNode(String key, Object val) {
         this.key = key;
         this.val = val;
     }
@@ -19,7 +19,7 @@ public class JsonField {
     @Override
     public String toString() {
         StringBuffer newVal = new StringBuffer("");
-        if (val instanceof JsonField) {
+        if (val instanceof JsonTreeNode) {
             newVal.append(JsonTokens.JSON_START_BARACKET).append(val.toString()).append(JsonTokens.JSON_END_BARCKET);
         } else if (val instanceof String) {
             newVal.append(JsonTokens.JSON_STRING_TOKEN).append(val).append(JsonTokens.JSON_STRING_TOKEN);
@@ -43,4 +43,36 @@ public class JsonField {
                 .append(newVal).toString();
 
     }
+
+    private boolean isNumeric(String str) {
+        try {
+            double d = Double.parseDouble(str);
+        } catch (NumberFormatException nfe) {
+            return false;
+        }
+        return true;
+    }
+
+//
+//    public JsonTreeNode pareseFromString(String jsonString) {
+//        if (isNumeric(jsonString)) {            // simple number
+//            return JsonTreeNode(jsonString)
+//        } else if (String.valueOf(jsonString.charAt(0)).equals("\"")) {  //simple string without ":"
+//            return JsonTreeNode(jsonString)
+//        } else if {)  //compund string "" : ""
+//            return JsonKeyValueTreeNode(pareseFromString(firstStr), pareseFromString(secondStr))
+//
+//        }else if () {// compond array
+//            String[] arrayObj = splitByArraySepearotr
+//            JsonTreeNode[] JsonTreeNodeArray = new JsonTreeNode[];
+//            for (String s : arrayObj) {
+//                JsonTreeNodeArray[i] = pareseFromString(s);
+//            }
+//            return JsonArrayTreeNode(JsonTreeNodeArray);
+//        } else if(Json) { // json tree
+//            split by
+//            return newJsonBarcketNode()
+//        }
+//    }
+
 }
