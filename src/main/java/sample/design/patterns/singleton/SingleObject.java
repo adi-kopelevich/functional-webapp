@@ -5,17 +5,19 @@ package sample.design.patterns.singleton;
  */
 public class SingleObject {
 
-    private static SingleObject _instance = new SingleObject();
+    private static SingleObject _instance;
 
-    private SingleObject(){
-
+    private SingleObject() {
     }
 
-    public static SingleObject getInstance(){
+    public static SingleObject getInstance() {
+        if (_instance == null) {
+            _instance = new SingleObject();
+        }
         return _instance;
     }
 
-    public String getMessage(){
+    public String getMessage() {
         return "Hello";
     }
 
