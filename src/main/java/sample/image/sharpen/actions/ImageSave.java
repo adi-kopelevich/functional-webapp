@@ -1,4 +1,7 @@
-package sample.image.sharpen;
+package sample.image.sharpen.actions;
+
+import sample.image.sharpen.fs.FileManagementFacade;
+import sample.image.sharpen.cache.SharpenedImagesCache;
 
 import java.util.concurrent.SynchronousQueue;
 
@@ -25,12 +28,12 @@ public class ImageSave implements Runnable {
             }
             saveImage(imageSharpenBytes, filename);
             SharpenedImagesCache.getInstance().remove(filename);
-            ImageManagedList.getInstance().markComplete(filename);
+            FileManagementFacade.getInstance().markComplete(filename);
         }
     }
 
     private void saveImage(byte[] imageBytes, String filename) {
-        System.out.println("Saved File: " + filename);
+        System.out.println("Saved File: " + filename + " - "+imageBytes[1]);
         try {
             Thread.sleep(100);
         } catch (InterruptedException e) {

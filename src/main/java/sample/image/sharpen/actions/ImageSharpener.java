@@ -1,5 +1,8 @@
-package sample.image.sharpen;
+package sample.image.sharpen.actions;
 
+import sample.image.sharpen.cache.SharpenedImagesCache;
+
+import java.util.Random;
 import java.util.concurrent.SynchronousQueue;
 
 /**
@@ -17,7 +20,7 @@ public class ImageSharpener implements Runnable {
 
     public void run() {
         String filename = "";
-        byte[] imageBytes = new byte[0];
+        byte[] imageBytes = null;
         try {
             filename = loadedImagesQueue.take();
             imageBytes = SharpenedImagesCache.getInstance().get(filename);
@@ -36,12 +39,14 @@ public class ImageSharpener implements Runnable {
 
 
     private byte[] sharpenImage(byte[] imageBytes, String filename) {
-        System.out.println("Sharpen " + filename);
+
         try {
-            Thread.sleep(3000);
+            Thread.sleep((int)Math.random()*10000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+        new Random().nextBytes(imageBytes);
+        System.out.println("Sharpened " + filename + " - " + imageBytes[1]);
         return imageBytes;
     }
 }

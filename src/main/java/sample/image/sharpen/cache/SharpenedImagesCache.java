@@ -1,4 +1,4 @@
-package sample.image.sharpen;
+package sample.image.sharpen.cache;
 
 import java.util.HashMap;
 import java.util.Map;
