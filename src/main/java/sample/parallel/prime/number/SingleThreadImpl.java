@@ -3,9 +3,9 @@ package sample.parallel.prime.number;
 /**
  * Created by kopelevi on 15/11/2015.
  */
-public class SingleThread {
+public class SingleThreadImpl implements PrimeNumChecker{
 
-    public static boolean isPrime(int n) {
+    public boolean isPrime(int n) {
         boolean isPrime = true;
         if (n <= 0) {
             throw new IllegalArgumentException("Expected positive number, given: " + n);

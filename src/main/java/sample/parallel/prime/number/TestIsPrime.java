@@ -8,13 +8,19 @@ public class TestIsPrime {
     public static void main(String[] args) {
         int number = 179424937;
         long startTime = System.currentTimeMillis();
-        SingleThread.isPrime(number);
+        new SingleThreadImpl().isPrime(number);
         long endTime = System.currentTimeMillis();
-        System.out.println("SingleThread - Total execution time (ms) = " + String.valueOf(endTime - startTime));
+        System.out.println("SingleThreadImpl - Total execution time (ms) = " + String.valueOf(endTime - startTime));
 
         startTime = System.currentTimeMillis();
-        ParallelStream.isPrime(number);
+        new ParallelStreamImpl().isPrime(number);
         endTime = System.currentTimeMillis();
-        System.out.println("ParallelStream - Total execution time (ms) = " + String.valueOf(endTime - startTime));
+        System.out.println("ParallelStreamImpl - Total execution time (ms) = " + String.valueOf(endTime - startTime));
+
+        startTime = System.currentTimeMillis();
+        new ExecutorServiceImpl().isPrime(number);
+        endTime = System.currentTimeMillis();
+        System.out.println("ExecutorServiceImpl - Total execution time (ms) = " + String.valueOf(endTime - startTime));
+
     }
 }
