@@ -11,7 +11,7 @@ import java.util.*;
 public class AnagramsFinder {
 
     public Map<String, Set<String>> getAnagrams(Set<String> words) {
-
+        long startTime = System.currentTimeMillis();
         if (words == null || words.size() == 0) {
             throw new IllegalArgumentException("Expected set of strings but got: " + words);
         }
@@ -32,7 +32,10 @@ public class AnagramsFinder {
                 biggestAnagramSetKey = key;
             }
         }
+        long endTime = System.currentTimeMillis();
         System.out.println("Set of anagrams containing the most words: " + anagramsMap.get(biggestAnagramSetKey));
+        System.out.println("Total execution time [ms]: " + String.valueOf(endTime - startTime));
+
         return anagramsMap;
     }
 
