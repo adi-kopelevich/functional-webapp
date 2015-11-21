@@ -1,6 +1,7 @@
 package sample.code.kata;
 
 import java.util.*;
+import java.util.stream.IntStream;
 
 /**
  * Created by kopelevi on 18/11/2015.
@@ -11,17 +12,15 @@ public class SortingBalls {
     private final int NUMBER_OF_RESULTS = new Random().nextInt(15);
 
     public Set<Integer> doLottery() {
-        System.out.println("Today's Lottery is drawing "+NUMBER_OF_RESULTS+" balls..");
+        System.out.println("Today's Lottery is drawing " + NUMBER_OF_RESULTS + " balls..");
         Set<Integer> resultSet = new TreeSet<>();
         List<Integer> numbersArray = new ArrayList<>(NUMBER_OF_BALLS);
-        for (int i = 0; i < NUMBER_OF_BALLS; ++i) {
-            numbersArray.add(i);
-        }
+        IntStream.range(0, NUMBER_OF_BALLS).forEach(numbersArray::add);
         for (int j = 0; j < NUMBER_OF_RESULTS; j++) {
             int ballIndx = new Random().nextInt(numbersArray.size());
             Integer ballNum = numbersArray.remove(ballIndx);
             resultSet.add(ballNum);
-            System.out.println("Ball "+j+": " + ballNum);
+            System.out.println("Ball " + j + ": " + ballNum);
         }
         System.out.println("Result Set: " + resultSet);
         return resultSet;
