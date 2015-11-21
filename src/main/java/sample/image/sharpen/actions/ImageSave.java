@@ -10,7 +10,7 @@ import java.util.concurrent.SynchronousQueue;
  */
 public class ImageSave implements Runnable {
 
-    private SynchronousQueue<String> sharpenedImagesQueue;
+    private final SynchronousQueue<String> sharpenedImagesQueue;
 
     public ImageSave(SynchronousQueue<String> sharpenedImagesQueue) {
         this.sharpenedImagesQueue = sharpenedImagesQueue;

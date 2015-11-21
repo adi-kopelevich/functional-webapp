@@ -10,8 +10,8 @@ import java.util.concurrent.SynchronousQueue;
  */
 public class ImageSharpener implements Runnable {
 
-    private SynchronousQueue<String> loadedImagesQueue;
-    private SynchronousQueue<String> sharpenedImagesQueue;
+    private final SynchronousQueue<String> loadedImagesQueue;
+    private final SynchronousQueue<String> sharpenedImagesQueue;
 
     public ImageSharpener(SynchronousQueue<String> loadedImagesQueue, SynchronousQueue<String> sharpenedImagesQueue) {
         this.loadedImagesQueue = loadedImagesQueue;

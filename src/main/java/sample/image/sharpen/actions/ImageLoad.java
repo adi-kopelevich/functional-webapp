@@ -11,7 +11,7 @@ import java.util.concurrent.SynchronousQueue;
  */
 public class ImageLoad implements Runnable {
 
-    private SynchronousQueue<String> loadedImagesQueue;
+    private final SynchronousQueue<String> loadedImagesQueue;
 
     public ImageLoad(SynchronousQueue<String> loadedImagesQueue) {
         this.loadedImagesQueue = loadedImagesQueue;

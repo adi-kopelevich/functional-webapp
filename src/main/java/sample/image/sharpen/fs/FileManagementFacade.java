@@ -32,6 +32,7 @@ public class FileManagementFacade {
 
     public void markComplete(String filename) {
         fileNamesStatus.put(filename, true);
+        // flush to disk?
     }
 
     public void clear() {
