@@ -5,16 +5,13 @@ package sample.design.patterns.singleton;
  */
 public class SingleObject {
 
-    private static SingleObject _instance;
+    private static final SingleObject _INSTANCE = new SingleObject();
 
     private SingleObject() {
     }
 
     public static SingleObject getInstance() {
-        if (_instance == null) {
-            _instance = new SingleObject();
-        }
-        return _instance;
+        return _INSTANCE;
     }
 
     public String getMessage() {
