@@ -26,14 +26,18 @@ public class FileManagementFacade {
     }
     public List<String> getFilenamesToProcess() {
         List<String> targetLongList = new ArrayList<>();
-        fileNamesStatus.keySet().stream().filter(file -> !fileNamesStatus.get(file)).forEach(targetLongList::add);
+        for (String filename : fileNamesStatus.keySet()){
+            if(!fileNamesStatus.get(filename)){
+                targetLongList.add(filename);
+            }
+        }
         return targetLongList;
     }
 
-    public void markComplete(String filename) {
-        fileNamesStatus.put(filename, true);
-        // flush to disk?
-    }
+//    public void markComplete(String filename) {
+//        fileNamesStatus.put(filename, true);
+//        // flush to disk?
+//    }
 
     public void clear() {
         fileNamesStatus.clear();

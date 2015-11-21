@@ -44,8 +44,8 @@ public class ImageManageListTest {
         files.loadFileData(initData);
         String fileName = "file4.jpg";
         Assert.assertTrue(files.getFilenamesToProcess().contains(fileName));
-        files.markComplete(fileName);
-        Assert.assertFalse(files.getFilenamesToProcess().contains(fileName));
+//        files.markComplete(fileName);
+//        Assert.assertFalse(files.getFilenamesToProcess().contains(fileName));
     }
 
     @Test

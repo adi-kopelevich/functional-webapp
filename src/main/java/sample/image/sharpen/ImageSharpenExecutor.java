@@ -7,35 +7,52 @@ import sample.image.sharpen.fs.FileManagementFacade;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.SynchronousQueue;
+import java.util.concurrent.*;
 
 /**
  * Created by kopelevi on 07/09/2015.
  */
 public class ImageSharpenExecutor {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
+
+        final int numberOfFiles = 10;
 
         Map<String, Boolean> initData = new HashMap<>();
-        for (int i = 1; i <= 10; i++) {
+        for (int i = 0; i < numberOfFiles; i++) {
             initData.put("file" + i + ".jpg", false);
         }
-        initData.put("file2.jpg", true);
+//        initData.put("file2.jpg", true);
+
+        long startTime = System.currentTimeMillis();
         FileManagementFacade.getInstance().loadFileData(initData);
 
-        SynchronousQueue loadedImagesQueue = new SynchronousQueue();
-        SynchronousQueue sharpenedImagesQueue = new SynchronousQueue();
+        BlockingQueue loadedImagesQueue = new ArrayBlockingQueue<String>(5);
+        BlockingQueue sharpenedImagesQueue = new ArrayBlockingQueue<String>(5);
 
-        new Thread(new ImageLoad(loadedImagesQueue)).start();
-        new Thread(new ImageSave(sharpenedImagesQueue)).start();
+        Thread imageLoadThread = new Thread(new ImageLoad(loadedImagesQueue));
+        imageLoadThread.setDaemon(true);
+        imageLoadThread.start();
 
-        ExecutorService executor = Executors.newFixedThreadPool(2);
-        for (int i = 0; i < 10; i++) {
+        Thread imageSaveThread = new Thread(new ImageSave(sharpenedImagesQueue));
+        imageSaveThread.setDaemon(true);
+        imageSaveThread.start();
+
+        ExecutorService executor = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors());
+        for (int i = 0; i < numberOfFiles; i++) {
             Runnable worker = new ImageSharpener(loadedImagesQueue, sharpenedImagesQueue);
             executor.execute(worker);
         }
         executor.shutdown();
+        boolean finshiedOnTime = executor.awaitTermination(5, TimeUnit.SECONDS);
+
+        long endTime = System.currentTimeMillis();
+        if(finshiedOnTime){
+            System.out.println("Total Execution Time [ms]: " + String.valueOf(endTime - startTime));
+        }else{
+            System.out.println("Aborted after timeout... ");
+        }
+
+
     }
 }

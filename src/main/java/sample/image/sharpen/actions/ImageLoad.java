@@ -1,19 +1,19 @@
 package sample.image.sharpen.actions;
 
-import sample.image.sharpen.fs.FileManagementFacade;
 import sample.image.sharpen.cache.SharpenedImagesCache;
+import sample.image.sharpen.fs.FileManagementFacade;
 
 import java.util.Random;
-import java.util.concurrent.SynchronousQueue;
+import java.util.concurrent.BlockingQueue;
 
 /**
  * Created by kopelevi on 07/09/2015.
  */
 public class ImageLoad implements Runnable {
 
-    private final SynchronousQueue<String> loadedImagesQueue;
+    private final BlockingQueue<String> loadedImagesQueue;
 
-    public ImageLoad(SynchronousQueue<String> loadedImagesQueue) {
+    public ImageLoad(BlockingQueue<String> loadedImagesQueue) {
         this.loadedImagesQueue = loadedImagesQueue;
     }
 

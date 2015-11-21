@@ -3,19 +3,19 @@ package sample.image.sharpen.actions;
 import sample.image.sharpen.cache.SharpenedImagesCache;
 
 import java.util.Random;
-import java.util.concurrent.SynchronousQueue;
+import java.util.concurrent.BlockingQueue;
 
 /**
  * Created by kopelevi on 07/09/2015.
  */
 public class ImageSharpener implements Runnable {
 
-    private final SynchronousQueue<String> loadedImagesQueue;
-    private final SynchronousQueue<String> sharpenedImagesQueue;
+    private final BlockingQueue<String> loadedImagesQueue;
+//    private final BlockingQueue<String> sharpenedImagesQueue;
 
-    public ImageSharpener(SynchronousQueue<String> loadedImagesQueue, SynchronousQueue<String> sharpenedImagesQueue) {
+    public ImageSharpener(BlockingQueue<String> loadedImagesQueue, BlockingQueue<String> sharpenedImagesQueue) {
         this.loadedImagesQueue = loadedImagesQueue;
-        this.sharpenedImagesQueue = sharpenedImagesQueue;
+//        this.sharpenedImagesQueue = sharpenedImagesQueue;
     }
 
     public void run() {
@@ -29,19 +29,19 @@ public class ImageSharpener implements Runnable {
         }
 
         byte[] imageSharpenBytes = sharpenImage(imageBytes, filename);
-        try {
-            SharpenedImagesCache.getInstance().add(filename, imageSharpenBytes);
-            sharpenedImagesQueue.put(filename);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+//        try {
+//            SharpenedImagesCache.getInstance().add(filename, imageSharpenBytes);
+//            sharpenedImagesQueue.put(filename);
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
     }
 
 
     private byte[] sharpenImage(byte[] imageBytes, String filename) {
 
         try {
-            Thread.sleep((int)Math.random()*10000);
+            Thread.sleep((int)Math.random()*1000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
