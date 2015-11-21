@@ -1,27 +1,23 @@
 package sample.image.sharpen.cache;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * Created by kopelevi on 07/09/2015.
  */
 public class SharpenedImagesCache {
 
-    private static Map<String, Object> sharpenedImagesMap;
-    private static SharpenedImagesCache _instance;
+
+    private static final SharpenedImagesCache _INSTANCE = new SharpenedImagesCache();
+    private static ConcurrentHashMap<String, Object> sharpenedImagesMap;
 
     private SharpenedImagesCache() {
-        this.sharpenedImagesMap = new HashMap<>();
+        this.sharpenedImagesMap = new ConcurrentHashMap<>();
     }
 
     public static synchronized SharpenedImagesCache getInstance() {
-        if (_instance == null) {
-            _instance = new SharpenedImagesCache();
-        }
-        return _instance;
+        return _INSTANCE;
     }
-
     public void add(String filename, byte[] sharpenedImageBytes) {
         sharpenedImagesMap.put(filename, sharpenedImageBytes);
     }
